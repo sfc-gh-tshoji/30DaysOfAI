@@ -2,9 +2,14 @@
 name = "my-30daysofstreamlit-app"
 version = "0.1.0"
 requires-python = ">=3.11"
+description = ""
 dependencies = [
-    "streamlit[snowflake]==1.50.0",
+    "streamlit[snowflake]",
     "pandas>=2.0.0",
     "plotly>5.0.0",
     "requests>2.0.0,<3.0.0"
 ]
+
+[tool.uv]
+# earlier versions of numba require a python version < 3.11
+constraint-dependencies = ["numba>=0.56.0"]
