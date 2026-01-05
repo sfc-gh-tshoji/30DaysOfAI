@@ -5,9 +5,7 @@ requires-python = ">=3.11"
 description = ""
 dependencies = [
     "streamlit[snowflake]",
-    "pandas>=2.0.0",
-    "plotly>5.0.0",
-    "requests>2.0.0,<3.0.0"
+    "snowflake-ml-python"
 ]
 
 [tool.uv]
