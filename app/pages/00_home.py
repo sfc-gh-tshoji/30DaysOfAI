@@ -33,7 +33,7 @@ if 'current_page' not in st.session_state:
     
     # クイックスタートボタン
     if st.button("🏃‍♂️ 学習を始める", type="primary", use_container_width=True):
-        st.switch_page("pages/00_connect_to_snowflake.py")
+        st.switch_page("pages/01_connect_to_snowflake.py")
 
 # フッター
 st.markdown("---")
