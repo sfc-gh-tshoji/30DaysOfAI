@@ -30,6 +30,10 @@ if st.button("回答の生成"):
     response = json.loads(response_raw)
     st.write(response)
 
+# クイックスタートボタン
+if st.button("🏃‍♂️ 学習を始める", type="primary", use_container_width=True):
+    st.switch_page("pages/03_write_stream.py")
+
 # フッター
 st.divider()
 st.caption("Day 2: Hello, Cortex! | 30 Days of AI")

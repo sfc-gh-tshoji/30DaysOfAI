@@ -63,6 +63,10 @@ if st.button("回答の生成"):
         with st.spinner(f"{model}を使用して回答を生成中"):
             st.write_stream(custom_stream_generator)
 
+# クイックスタートボタン
+if st.button("🏃‍♂️ 学習を始める", type="primary", use_container_width=True):
+    st.switch_page("pages/04_caching_app.py")
+
 # フッター
 st.divider()
 st.caption("Day 3: Write streams | 30 Days of AI")

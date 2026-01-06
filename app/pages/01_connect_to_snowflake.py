@@ -17,3 +17,7 @@ version = session.sql("SELECT CURRENT_VERSION()").collect()[0][0]
 
 # 結果の表示
 st.success(f"Successfully connected! Snowflake Version: {version}")
+
+# クイックスタートボタン
+if st.button("🏃‍♂️ 学習を始める", type="primary", use_container_width=True):
+    st.switch_page("pages/02_hello_cortex.py")
