@@ -43,7 +43,7 @@ if st.button("実行"):
 
 # クイックスタートボタン
 if st.button("🏃‍♂️ 次へ進む", type="primary", use_container_width=True):
-    st.switch_page("pages/day_5.py")
+    st.switch_page("pages/05_post_generator.py")
 
 # フッター
 st.divider()

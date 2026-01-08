@@ -18,8 +18,8 @@ pg = st.navigation({
         st.Page("pages/02_hello_cortex.py", title="Day 2: Hello Cortex", icon=":material/smart_toy:"),
         st.Page("pages/03_write_stream.py", title="Day 3: 書き出しストリーミング", icon=":material/airwave:"),
         st.Page("pages/04_caching_app.py", title="Day 4: キャッシング", icon=":material/cached:"),
-        # st.Page("pages/day_5.py", title="Day 5: xxx", icon=":material/question:"),
-        # st.Page("pages/day_6.py", title="Day 6: xxx", icon=":material/cached:"),
+        st.Page("pages/05_post_generator.py", title="Day 5: ポスト生成アプリ", icon=":material/post:"),
+        st.Page("pages/06_post_generator_v2.py", title="Day 6: 長時間タスクのステータスUIつきアプリ", icon=":material/psychology:"),
         # st.Page("pages/day_7.py", title="Day 7: xxx", icon=":material/cached:"),
     ],
     "Week 2: チャットUI、セッションステート": [

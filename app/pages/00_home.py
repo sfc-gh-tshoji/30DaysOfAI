@@ -29,6 +29,9 @@ if 'current_page' not in st.session_state:
     - Snowflakeの基本操作をマスター
     - AIを活用したデータ活用スキルの習得
     - 実用的なアプリ、エージェントの作成
+    
+    ### 🔗 リンク
+    [30 Days of AI チャレンジアプリ](https://30daysofai.streamlit.app/)
     """)
     
     # クイックスタートボタン
