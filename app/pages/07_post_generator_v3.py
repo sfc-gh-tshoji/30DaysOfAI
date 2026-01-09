@@ -1,5 +1,6 @@
 import streamlit as st
 import json
+import time
 from snowflake.snowpark.functions import ai_complete
 
 # Snowflake への接続
@@ -29,12 +30,26 @@ def call_cortex_llm(prompt_text):
     return response_json
 
 # --- App UI ---
-st.title(":material/post: Day 6: LinkedIn Post Generator v2")
+
+st.title(":material/post: Day 7: LinkedIn Post Generator v3")
+st.success("入力されたリンクのコンテンツを使用して、LinkedInポストを生成するアプリ")    
 
 # Inputウィジェット
+st.subheader(":material/input: コンテンツ入力")
 content = st.text_input("コンテンツURL:", "https://docs.snowflake.com/en/user-guide/views-semantic/overview")
-tone = st.selectbox("トーン:", ["プロフェッショナル", "カジュアル", "愉快"])
-word_count = st.slider("ワード数:", 50, 300, 100)
+
+# サイドバー設定 - トーン、ワード数などの調整用ウィジェットとフッター等
+with st.sidebar:
+    tone = st.selectbox("トーン:", ["プロフェッショナル", "カジュアル", "愉快"])
+    word_count = st.slider("ワード数:", 50, 300, 100)
+    
+    # クイックスタートボタン
+    if st.button("🏃‍♂️ 次へ進む", type="primary", use_container_width=True):
+        st.switch_page("pages/08_chat_elements.py")
+    
+    # フッター
+    st.divider()
+    st.caption("Day 7: Post Generator App v3 | 30 Days of AI")
 
 # 生成ボタン
 if st.button("ポスト生成"):
@@ -56,21 +71,16 @@ if st.button("ポスト生成"):
 
         # Step 2: APIコール
         st.write(":material/flash_on: 生成中: Snowflake Cortex へ接続しています...")        
+        
+        # 短時間のディレイを追加
+        time.sleep(2)
 
+        # Cortexコール
         response = call_cortex_llm(prompt)
 
         # Step 3: 完了に伴うステータス更新
         st.write(":material/check_circle: ポスト生成が完了しました！")
-    
         status.update(label="ポスト生成に成功！", state="complete", expanded=False)
     
     st.subheader("生成されたポスト:")
     st.markdown(response)
-
-# クイックスタートボタン
-if st.button("🏃‍♂️ 次へ進む", type="primary", use_container_width=True):
-    st.switch_page("pages/07_post_generator_v3.py")
-
-# フッター
-st.divider()
-st.caption("Day 6: Post Generator App v2 | 30 Days of AI")

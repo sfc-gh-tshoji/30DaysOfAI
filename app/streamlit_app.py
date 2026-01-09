@@ -20,10 +20,10 @@ pg = st.navigation({
         st.Page("pages/04_caching_app.py", title="Day 4: キャッシング", icon=":material/cached:"),
         st.Page("pages/05_post_generator.py", title="Day 5: ポスト生成アプリ", icon=":material/post:"),
         st.Page("pages/06_post_generator_v2.py", title="Day 6: 長時間タスクのステータスUIつきアプリ", icon=":material/psychology:"),
-        # st.Page("pages/day_7.py", title="Day 7: xxx", icon=":material/cached:"),
+        st.Page("pages/07_post_generator_v3.py", title="Day 7: テーマ、レイアウト設定", icon=":material/side_navigation:"),
     ],
     "Week 2: チャットUI、セッションステート": [
-        # st.Page("pages/day_8.py", title="Day 1: Snowflake接続", icon=":material/vpn_key:"),
+        st.Page("pages/08_chat_elements.py", title="Day 8: チャットUI基礎", icon=":material/chat:"),
         # st.Page("pages/day_9.py", title="Day 2: Hello Cortex", icon=":material/smart_toy:"),
         # st.Page("pages/day_10.py", title="Day 3: 書き出しストリーミング", icon=":material/airwave:"),
         # st.Page("pages/day_11.py", title="Day 4: キャッシング", icon=":material/cached:"),
