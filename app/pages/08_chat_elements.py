@@ -6,7 +6,7 @@ st.title(":material/chat: Day 8: Meet the Chat Elements")
 with st.sidebar:
     # クイックスタートボタン
     if st.button("🏃‍♂️ 次へ進む", type="primary", use_container_width=True):
-        st.switch_page("pages/09_")
+        st.switch_page("pages/09_session_state.py")
     
     # フッター
     st.divider()
