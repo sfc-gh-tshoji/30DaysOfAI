@@ -30,11 +30,13 @@ def call_cortex(prompt_text: str) -> str:
 
 # --- App UI ---
 
-st.title(":material/chat: Day 10: First Chatbot")
+st.title(":material/chat: Day 11: Chatbot with History")
 
 # セッションステート内のメッセージリストを初期化
 if "messages" not in st.session_state:
-    st.session_state.messages = []
+    st.session_state.messages = [
+        {"role": "assistant", "content": "こんにちは！私はCortex AIアシスタントです。今日はどのようにお手伝いしましょうか？"}
+    ]
 
 # 履歴から全てのメッセージを表示
 for message in st.session_state.messages:
@@ -43,17 +45,31 @@ for message in st.session_state.messages:
 
 # サイドバー設定
 with st.sidebar:
+    st.header("会話スタッツ")
+    
+    user_msgs = len([m for m in st.session_state.messages if m["role"] == "user"])
+    assistant_msgs = len([m for m in st.session_state.messages if m["role"] == "assistant"])
+    
+    st.metric("あなたのメッセージ", user_msgs)
+    st.metric("AIの回答", assistant_msgs)
+    
+    if st.button("履歴のクリア"):
+        st.session_state.messages = [
+            {"role": "assistant", "content": "こんにちは！私はCortex AIアシスタントです。今日はどのようにお手伝いしましょうか？"}
+        ]
+        st.rerun()
+
     # モデル選択
     models_list = ['openai-gpt-5.2', 'claude-sonnet-4-5', 'gemini-3-pro']
     model = st.selectbox("モデルを選んでください", models_list)
-
+    
     # クイックスタートボタン
     if st.button("🏃‍♂️ 次へ進む", type="primary", use_container_width=True):
-        st.switch_page("pages/11_display_chat_history.py")
+        st.switch_page("pages/12_streaming_response.py")
     
     # フッター
     st.divider()
-    st.caption("Day 10: Your First Chatbot (with State) | 30 Days of AI")
+    st.caption("Day 11: Chatbot with History | 30 Days of AI")
 
 # Chat input
 if prompt := st.chat_input("何を知りたいですか？"):
@@ -66,9 +82,17 @@ if prompt := st.chat_input("何を知りたいですか？"):
 
     # アシスタントの回答を生成、表示
     with st.chat_message("assistant"):
-        response = call_cortex(prompt)
-        st.write(response)
-        st.write(f"使用モデル: {model}")
+        with st.spinner("思考中..."):
+            # コンテキストのためにすべての会話履歴を構築
+            conversation = "\n\n".join([
+                f"{'User' if msg['role'] == 'user' else 'Assistant'}: {msg['content']}"
+                for msg in st.session_state.messages
+            ])
+            full_prompt = f"{conversation}\n\nAssistant:"
+            
+            response = call_cortex(full_prompt)
+        st.markdown(response)
 
     # アシスタントの回答をステートに追加
     st.session_state.messages.append({"role": "assistant", "content": response})
+    st.rerun()  # サイドバーのスタッツ更新のため強制リラン
